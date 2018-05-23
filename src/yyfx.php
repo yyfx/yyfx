@@ -6,8 +6,11 @@ require_once 'autoload.php';
 require_once 'router.php';
 
 class yyfx {
+    public static function App() {
+        return new self();
+    }
     private $configs = [];
-    function set($key, $value) {
+    public function set($key, $value) {
         $this->configs[$key] = $value;
         return $this;
     }
