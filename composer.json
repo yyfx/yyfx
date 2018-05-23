@@ -1,5 +1,5 @@
 {
-	"name": "yyfx/yyfx-php-mvc",
+	"name": "yyfx/yyfxPhpMvc",
     "version": "1.0",
 
 	"authors":[
@@ -20,3 +20,4 @@
         }
     }
 }
+`
