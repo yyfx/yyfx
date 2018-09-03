@@ -1,39 +1,19 @@
 <?php
 namespace yyfx ;
-use yyfx\component\Router;
-
+use yyfx\component\Application;
 require_once 'autoload.php';
-require_once 'router.php';
 
 class yyfx {
-    public static function App() {
-        return new self();
-    }
-    private $configs = [];
-    public function set($key, $value) {
-        $this->configs[$key] = $value;
-        return $this;
-    }
-
-    function run() {
-        component\Logging::SetConfig([], component\Application::Config('logging')['path']);
-
-        ini_set("memory_limit","4096M");
-        set_time_limit(300);
-        if (isset($_SERVER['HTTP_DEBUG']) && $_SERVER['HTTP_DEBUG'] === '0') {
-            ini_set('display_errors', false);
-        }
-        try {
-            $router = new Router($this->configs['routeRule'], $this->configs['appNamespace']);
-            $router->router($_SERVER['REQUEST_URI']);
-            $err = error_get_last();
-            if (!empty($err)) {
-                component\Logging::Fatal($err);
+    public static function App($root, $namespace) {
+        spl_autoload_register(function($classname) use ($root , $namespace){
+            if (preg_match('/^'.$namespace.'\\\\/',$classname)) {
+                $pureClassName = str_replace('\\','/',substr($classname,strlen($namespace)+1));
+                $classFilename = $root.'/src/' .$pureClassName . '.php';
+                require_once ($classFilename);
             }
+        });
+        return new Application($root);
 
-        } catch (Exception $err) {
-            component\Logging::Fatal($err->getMessage());
-        }
     }
 }
 

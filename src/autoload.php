@@ -1,7 +1,10 @@
 <?php
 
 spl_autoload_register(function($className){
-    if (!preg_match('/^\\?yyfx\\/', $className)) {
+//    var_dump($className);
+    $partten = '/^\\?yyfx\\\\/';
+//    var_dump($partten);
+    if (!preg_match($partten, $className)) {
         return;
     }
     $classPath = substr($className, 5);

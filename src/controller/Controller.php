@@ -100,6 +100,23 @@ abstract class Controller
 
     function init() {}
 
+    function getQueryString($key, $default=null, $validater=null) {
+
+        if (isset($this->queryString[$key]) ) {
+            $val = $this->queryString[$key];
+        } else {
+            $val = $default;
+        }
+
+        if (is_callable($validater)) {
+            if (!$validater($val)) {
+                throw new \Exception('Not accept param for '. $key);
+            }
+        }
+
+        return $val;
+    }
+
     function sendResponse($data, $code=200, $contentType='application/json; charset=utf-8'){
         header ('HTTP/1.1 '. $code . ' '. self::HttpCode($code));
         header('content-type: '. $contentType);
@@ -107,6 +124,9 @@ abstract class Controller
         if (!empty($data)) {
 //            var_dump($data);
             echo $this->_jsonFormat($data);
+        }
+        else {
+            echo $this->_jsonFormat(array());
         }
     }
 
@@ -191,8 +211,8 @@ abstract class Controller
         header("Access-Control-Allow-Methods: PUT,POST,GET,DELETE,OPTIONS");
     }
 
-    function defaultRoute() {
-
+    function defaultRoute($data) {
+//        $this->sendResponse($data);
     }
 
 }
