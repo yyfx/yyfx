@@ -1,7 +1,7 @@
 # 新手入门
 
 ## 下载代码
-```shell
+```bash
 git clone https://github.com/yyfx/yyfx.git
 ```
 
