@@ -1,8 +1,8 @@
 # controller
-**自定义的controller的namespace请设置为appName/controller (appName在index.php中指定)**  
+**自定义的controller的namespace建议设置为appName\controller (appName在index.php中指定)**  
 **所有的controller都继承自yyfx\yyfx\controller\Controller类**  
 
-## 自定义请求处理器（handler）
+## 自定义请求处理器(handler)
 通过实现以下function，来处理的不同的HTTP Method请求
 ### function get()
 HTTP GET 方法处理函数
@@ -48,7 +48,8 @@ URI中？后的参数，以dict形式呈现
 
 
 
-## 示例（处理put请求，读取uri中的id，以及请求的body，并返回200响应）
+## 示例
+处理put请求，读取uri中的id，以及请求的body，并返回200响应
 ```php
 namespace myApp\controller;
 
