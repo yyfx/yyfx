@@ -45,6 +45,7 @@ host=127.0.0.1:8200
 
 ## index.php示例
 ```php
+<?php
 require 'yyfx/src/yyfx.php';
 
 
