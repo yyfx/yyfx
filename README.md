@@ -8,6 +8,7 @@ a restful php mvc framework
 - [数据库](docs/api/db.md)  
 
 ## 代码结构
+```text
 ├── composer.json  
 ├── composer.lock  
 ├── docs  
@@ -48,3 +49,4 @@ a restful php mvc framework
         ├── ClassLoader.php  
         ├── installed.json  
         └── LICENSE  
+```
