@@ -1,5 +1,8 @@
 # yyfx-php-mvc
 a restful php mvc framework
 
-## 参考
+## api参考
 - [入门](docs/api/start.md)
+- [controller](docs/api/controller.md)
+- [model](docs/api/model.md)
+- [数据库](docs/api/db.md)  
