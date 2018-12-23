@@ -1,9 +1,6 @@
 {
-  "name": "yyfx/yyfx",
-  "license": "MIT",
-  "version" : "1.0.0",
-  "description": "a restful php framework",
-  "authors":[
+	"name": "yyfx/yyfx",
+	"authors":[
         {
             "name": "YAO YI",
             "email": "yaoyi@fcci.cn",
@@ -11,7 +8,7 @@
         }
     ],
     "require": {
-      "php": ">=5.4.0"
+        "php": ">=5.4"
     },
 
     "autoload":{
