@@ -38,6 +38,9 @@ class Logging
     }
 
     private static function _PrintLog($message, $level, $caller) {
+        if (empty(self::$_output)) {
+            return;
+        }
         if (is_array($message) || is_object($message)) {
             $message = json_encode($message);
         }
