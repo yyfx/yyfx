@@ -46,23 +46,19 @@ host=127.0.0.1:8200
 ## index.php示例
 ```php
 <?php
-if (file_exists(__DIR__.'/vendor/autoload.php')) {
-    require_once(__DIR__.'/vendor/autoload.php');
-}
+require_once(__DIR__.'/vendor/autoload.php');
 
 $routeRule = [
     '^/demo/?(\\w*)$'   => 'controller\\Demo',
 ];
 
-$route = [
-    '^/case/(\\w*)$' => 'controller\\CaseController',
-];
+
 
 yyfx\yyfx::App()
     ->setAppRoot(__DIR__)
     ->setConfigPath(__DIR__.'/config.ini')
     ->setAppNamespace('demo')
-    ->setRoute($route)
+    ->setRoute($routeRule)
     ->run();
 
 ```
