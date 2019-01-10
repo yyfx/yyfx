@@ -46,10 +46,6 @@ host=127.0.0.1:8200
 ## index.php示例
 ```php
 <?php
-require 'yyfx/src/yyfx.php';
-
-
-
 if (file_exists(__DIR__.'/vendor/autoload.php')) {
     require_once(__DIR__.'/vendor/autoload.php');
 }
@@ -58,12 +54,15 @@ $routeRule = [
     '^/demo/?(\\w*)$'   => 'controller\\Demo',
 ];
 
-$appNamespace = 'demoApp';
-$router = new \yyfx\component\router\RegexRouter($routeRule, $appNamespace);
+$route = [
+    '^/case/(\\w*)$' => 'controller\\CaseController',
+];
 
-\yyfx\yyfx::App(__DIR__, $appNamespace)
-    ->setConfigFile(__DIR__ . '/conf/config.ini')
-    ->setRouter($router)
+yyfx\yyfx::App()
+    ->setAppRoot(__DIR__)
+    ->setConfigPath(__DIR__.'/config.ini')
+    ->setAppNamespace('demo')
+    ->setRoute($route)
     ->run();
 
 ```
