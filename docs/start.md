@@ -5,14 +5,7 @@
 git clone https://github.com/yyfx/yyfx.git
 
 # Composer安装（推荐）
-echo <<<END
-{
-    "require":{
-        "yyfx/yyfx":"dev-master"
-    }
-}
-END>composer.json
-
+composer require --dev yyfx/yyfx
 composer install
 ```
 
