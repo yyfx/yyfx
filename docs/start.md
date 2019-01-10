@@ -3,6 +3,17 @@
 ## 下载代码
 ```bash
 git clone https://github.com/yyfx/yyfx.git
+
+# Composer安装（推荐）
+echo <<<END
+{
+    "require":{
+        "yyfx/yyfx":"dev-master"
+    }
+}
+END>composer.json
+
+composer install
 ```
 
 ## 环境
