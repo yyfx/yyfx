@@ -3,17 +3,30 @@ namespace yyfx ;
 use yyfx\component\Router;
 
 require_once 'autoload.php';
-require_once 'router.php';
 
 class yyfx {
     private $configPath = '';
     private $routeRule = [];
     private $appNamespace = '';
     private $appRoot = '';
+
+    /**
+     * @var Router
+     */
+    private $router = null;
+    private function __construct() {
+
+    }
+
     public static function App() {
         return new self();
     }
     private $configs = [];
+
+    public function setRoot($root) {
+        $this->appRoot = $root;
+        return $this;
+    }
 
     public function set($key, $value) {
         $this->configs[$key] = $value;
@@ -27,6 +40,11 @@ class yyfx {
 
     public function setRoute($route) {
         $this->routeRule = $route;
+        return $this;
+    }
+
+    public function setRouter($router) {
+        $this->router = $router;
         return $this;
     }
 
@@ -57,11 +75,12 @@ class yyfx {
                 return;
             }
 
-
-            $classPath = substr($className, strlen($registredNamespace) + 1);
-
+            $classPath = substr($className, strlen($registredNamespace));
             $classPath = str_replace('\\', DIRECTORY_SEPARATOR, $classPath);
+
             $classFile = $this->appRoot . DIRECTORY_SEPARATOR . $classPath . '.php';
+
+
             if (file_exists($classFile)) {
                 include $classFile;
             } else {
@@ -70,8 +89,8 @@ class yyfx {
         });
 
         try {
-            $router = new Router($this->routeRule, $this->appNamespace);
-            $router->router($_SERVER['REQUEST_URI']);
+            $router = $this->router;
+            $router->route($_SERVER['REQUEST_URI']);
             $err = error_get_last();
             if (!empty($err)) {
                 component\Logging::Fatal($err);

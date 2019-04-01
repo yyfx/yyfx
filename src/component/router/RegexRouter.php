@@ -29,12 +29,17 @@ class RegexRouter extends \yyfx\component\Router
     {
         $router = $this->routeRule;
         foreach ($router as $u=>$classname) {
+//            var_dump($u);
+//            var_dump($this->uri);
             if (preg_match('@'.$u.'@', $this->uri, $matches)) {
                 $fullClassName = $this->appNamespace.'\\' . $classname;
+//                var_dump($fullClassName);
+
                 $inst = new $fullClassName($this->query, $this->payload);
                 if (sizeof($matches)>1) {
                     $inst->suburi = $matches[1];
                 }
+
                 return $inst;
 
             }
